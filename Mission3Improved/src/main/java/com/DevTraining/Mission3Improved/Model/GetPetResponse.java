@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class GetPetResponse {
-    String pet;
-    String type;
-    String gender;
-    Integer age;
-    Boolean isFavourite;
+    private String pet;
+    private String type;
+    private String gender;
+    private Integer age;
+    private Boolean isFavourite;
 
 }
 

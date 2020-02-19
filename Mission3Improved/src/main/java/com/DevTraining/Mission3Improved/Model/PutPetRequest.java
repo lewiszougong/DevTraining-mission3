@@ -14,6 +14,6 @@ public class PutPetRequest {
     String type;
     String gender;
     Integer age;
-    Boolean isFavourite;
+    String isFavourite;
 
 }

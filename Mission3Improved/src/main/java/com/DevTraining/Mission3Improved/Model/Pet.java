@@ -18,9 +18,9 @@ public class Pet {
     private String type;
     private String gender;
     private Integer age;
-    private Boolean isFavourite;
+    private String isFavourite;
 
-    public Pet(Integer id, String pet, String type, String gender, Integer age, Boolean isFavourite){
+    public Pet(Integer id, String pet, String type, String gender, Integer age, String isFavourite){
         this.id=id;
         this.pet=pet;
         this.type=type;

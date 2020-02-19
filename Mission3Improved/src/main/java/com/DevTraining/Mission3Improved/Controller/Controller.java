@@ -17,13 +17,13 @@ public class Controller {
         this.postService=postService;
     }
     @PostMapping
-    public String createResponse(@RequestBody PostPetRequest postPetRequest) throws SQLException{
+    public String createResponse(@RequestBody PostPetRequest postPetRequest){
 
         return postService.savePet(postPetRequest);
     }
 
     @GetMapping("/{id}")
-    public GetPetResponse getValue(@PathVariable(value="id") int id) throws SQLException {
+    public Pet getValue(@PathVariable(value="id") int id){
 
         return postService.getPet(id);
     }
@@ -36,8 +36,6 @@ public class Controller {
     public String deleteResponse(@PathVariable(value= "id") int id) throws SQLException{
         return postService.deletePet(id);
     }
-
-
 
 }
 

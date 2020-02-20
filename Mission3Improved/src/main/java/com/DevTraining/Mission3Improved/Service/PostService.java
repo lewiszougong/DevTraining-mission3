@@ -1,6 +1,6 @@
 package com.DevTraining.Mission3Improved.Service;
 
-import com.DevTraining.Mission3Improved.Repository.Repo;
+//import com.DevTraining.Mission3Improved.Repository.Repo;
 import com.DevTraining.Mission3Improved.Model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,13 +13,12 @@ import java.util.List;
 
 @Service
 public class PostService {
-    private  JdbcTemplate jdbcTemplate=new JdbcTemplate();
-   private Repo repo;
 
-    public PostService(Repo repo) {
-        this.repo = repo;
+    private  JdbcTemplate jdbcTemplate;
+
+    public PostService(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
-
 
     public String savePet(PostPetRequest postPetRequest)  {
         String petName = postPetRequest.getPet();
@@ -27,7 +26,7 @@ public class PostService {
         String petGender = postPetRequest.getGender();
         Integer petAge = postPetRequest.getAge();
 
-        jdbcTemplate=repo.connectDataSource();
+        //jdbcTemplate=repo.connectDataSource();
         jdbcTemplate.update("INSERT INTO tbl_pet(pet,type,gender, age, isFavourite) values(?,?,?,?,?)",petName, petType, petGender, petAge, "Null");
         return "Created and saved";
     }
@@ -45,7 +44,7 @@ public class PostService {
         }
     }
     public Pet getPet(int ID) {
-        jdbcTemplate = repo.connectDataSource();
+        //jdbcTemplate = repo.connectDataSource();
         return jdbcTemplate.queryForObject("SELECT * FROM tbl_pet WHERE id=?", new Object[]{ID}, new PetRowMapper());
     }
 
@@ -58,14 +57,14 @@ public class PostService {
 //
     public String updatePet(int ID, PutPetRequest putPetRequest) throws SQLException{
 
-        jdbcTemplate = repo.connectDataSource();
+        //jdbcTemplate = repo.connectDataSource();
         String sql = "UPDATE tbl_pet SET pet =?, type =?, gender=?, age=?, isFavourite=? WHERE id =?";
         jdbcTemplate.update(sql,putPetRequest.getPet(), putPetRequest.getType(), putPetRequest.getGender(), putPetRequest.getAge(), putPetRequest.getIsFavourite(),ID);
 
         return"Updated";
    }
     public String deletePet(int ID) throws SQLException{
-        jdbcTemplate = repo.connectDataSource();
+        //jdbcTemplate = repo.connectDataSource();
         String sql = "DELETE FROM tbl_pet WHERE id=?";
         jdbcTemplate.update(sql, ID);
 
